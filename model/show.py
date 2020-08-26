@@ -1,5 +1,6 @@
 from data import alchemy
-from . import episodes
+from . import episode
+
 
 class ShowModel(alchemy.Model):
     __tablename__ = 'shows'
@@ -8,9 +9,9 @@ class ShowModel(alchemy.Model):
     name = alchemy.Column(alchemy.String(80))
 
     # episódios
-    #lazy dynamic indica que o carregamento de episodios sera feito dinamicamente
-    #nao tudo de uma vez
-    episodes = alchemy.relationship(episodes.EpisodeModel, lazy='dynamic')
+    # lazy dynamic indica que o carregamento de episodios sera feito dinamicamente
+    # nao tudo de uma vez
+    episodes = alchemy.relationship(episode.EpisodeModel, lazy='dynamic')
 
     def __init__(self, name):
         self.name = name
@@ -24,6 +25,10 @@ class ShowModel(alchemy.Model):
         # consultas demasiadas
         # essa instrução executa insert na base de dados
         alchemy.session.add(self)
+        alchemy.session.commit()
+
+    def delete(self):
+        alchemy.session.delete(self)
         alchemy.session.commit()
 
     # classmethod para retornar a representação do que
