@@ -35,10 +35,10 @@ class ShowModel(alchemy.Model):
     # se refere apenas àquele objeto
     # .first() traz somente um recurso, não uma lista
 
-    @classmethod
-    def find_by_name(cls, name):
-        return cls.query.filter_by(name=name).first()
-
-    @classmethod
-    def find_by_id(cls, id):
-        return cls.query.filter_by(id=id).first()
+    # @classmethod
+    # def find_by_name(cls, name):
+    #     return cls.query.filter_by(name=name)
+    #
+    # @classmethod
+    # def find_by_id(cls, id):
+    #     return cls.query.filter_by(id=id)
